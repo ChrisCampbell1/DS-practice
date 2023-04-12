@@ -80,7 +80,6 @@ class LinkedList {
       while(counter < index -1) {
         counter++
         current = current.next
-        console.log(current)
       }
       //sets a temporary variable to hold the pointer of the node in the index that will be inserted
       let temp = current.next
@@ -93,6 +92,25 @@ class LinkedList {
     }
     return this
   }
+
+  delete(index) {
+    //check if index is out of bounds
+    if(index < 0 || index >= this.legnth) {
+      return -1
+    } else if(index === 0) {
+      this.removeHead()
+    } else if(index === this.legnth -1) {
+      this.removeTail()
+    } else {
+      //remove some center node
+    }
+  }
+
+  removeHead() {
+    this.head = this.head.next
+    this.legnth--
+  }
+
 }
 
 const list = new LinkedList()
@@ -105,5 +123,6 @@ list.append(list.legnth)
 list.append(list.legnth)
 list.append(list.legnth)
 list.insert(5, 'this will be inserted at index 5')
+list.delete(0)
 
 console.log(list.print())
