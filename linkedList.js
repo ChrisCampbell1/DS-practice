@@ -149,6 +149,31 @@ class LinkedList {
       return current
     }
   }
+
+  reverse() {
+    if(!this.head) return -1
+    //flip the head and tail
+    let node = this.head
+    this.head = this.tail
+    this.tail = node
+
+    //make placeholder variables
+    let prev = null
+    let next
+
+    for(let i = 0; i < this.legnth; i++) {
+      //node here is the original head so next is the second node in the LinkedList
+      next = node.next
+      //node is still the original head (now the tail) setting to null so the LinkedList in null terminating
+      node.next = prev
+      //prev is being updated from null to the original head
+      prev = node
+      //node is being updated from the original head to the second node the LinkedList
+      node = next
+    }
+    return this
+  }
+
 }
 
 const list = new LinkedList()
@@ -160,8 +185,8 @@ list.append(list.legnth)
 list.append(list.legnth)
 list.append(list.legnth)
 list.append(list.legnth)
-// list.insert(5, 'this will be inserted at index 5')
-// list.delete(5)
+list.insert(5, 'this will be inserted at index 5')
+list.reverse()
 
 
-console.log(list.get(1))
+console.log(list.print())
