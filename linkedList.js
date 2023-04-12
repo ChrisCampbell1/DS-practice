@@ -16,6 +16,19 @@ class LinkedList {
     this.tail = null
   }
 
+  //method to print the LinkedList to easily read the data
+  print() {
+    const result = []
+    let counter = 0
+    let current = this.head
+    while(counter < this.legnth) {
+      result.push(current.data)
+      current = current.next
+      counter++
+    }
+    return result
+  }
+
   //method to add a new node as the head of the LinkedList
   prepend(data) {
     const node = new Node(data)
@@ -36,4 +49,4 @@ const list = new LinkedList()
 list.prepend('first node')
 list.prepend('new head')
 list.prepend('newest head')
-console.log(list)
+console.log(list.print())
