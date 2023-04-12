@@ -102,7 +102,18 @@ class LinkedList {
     } else if(index === this.legnth -1) {
       this.removeTail()
     } else {
-      //remove some center node
+      //itterate to one index before the node that's to be deleted
+      let current = this.head
+      let count = 0
+      while(count < index -1) {
+        current = current.next
+        count ++
+      }
+      // set that node's next property to skip over the deleted node
+      current.next = current.next.next
+      //decrement the legnth property of the LinkedList
+      this.legnth--
+      return this
     }
   }
 
@@ -111,6 +122,33 @@ class LinkedList {
     this.legnth--
   }
 
+  removeTail() {
+    let current = this.head
+    let counter = 0
+    //node before last
+    while(counter < this.legnth - 2){
+      current = current.next
+      counter++
+    } 
+    current.next = null
+    this.tail = current
+    this.legnth--
+  }
+
+  get(index) {
+    //check if index is out of bounds
+    if(index < 0 || index >= this.legnth) {
+      return -1
+    } else {
+      let current = this.head
+      let count = 0
+      while(count < index) {
+        current = current.next
+        count++
+      }
+      return current
+    }
+  }
 }
 
 const list = new LinkedList()
@@ -122,7 +160,8 @@ list.append(list.legnth)
 list.append(list.legnth)
 list.append(list.legnth)
 list.append(list.legnth)
-list.insert(5, 'this will be inserted at index 5')
-list.delete(0)
+// list.insert(5, 'this will be inserted at index 5')
+// list.delete(5)
 
-console.log(list.print())
+
+console.log(list.get(1))
